@@ -1,0 +1,24 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+
+.app--container{
+  display: grid!important;
+}
+
+.register--container{
+  width: 29.5%;
+  margin-left: 8px!important;
+}
+
+.card--container{
+  width: 31%!important;
+  text-align: center;
+}
+
+
+
+.buttonVoltar{
+  background-color: black!important;
+}
