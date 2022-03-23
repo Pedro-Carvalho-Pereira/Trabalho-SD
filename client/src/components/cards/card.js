@@ -12,13 +12,13 @@ export default function Card(props) {
     
     return (
         <>
-        <FormDialog open={open} setOpen={setOpen} title={props.name} cost={props.cost}
-         category={props.category} listCard={props.listCard} setListCard={props.setListCard} id={props.id}/>
+        <FormDialog open={open} setOpen={setOpen} title={props.descricao} prazo={props.prazo}
+         completa={props.completa} listCard={props.listCard} setListCard={props.setListCard} id={props.id}/>
             <div className="card--container" onClick={()=>handleClickCard()}>
                 <h2>{props.id}</h2>
-                <h1 className="card--title">{props.name}</h1>
-                <p className="card--cost">R$ {props.cost}</p>
-                <p className="card--category">{props.category}</p>
+                <h1 className="card--title">{props.descricao}</h1>
+                <p className="card--cost">{props.prazo}</p>
+                <p className="card--category">{props.completa}</p>
             </div>
         </>
     );

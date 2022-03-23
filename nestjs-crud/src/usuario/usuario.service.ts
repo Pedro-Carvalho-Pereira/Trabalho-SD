@@ -16,12 +16,16 @@ export class UsuarioService {
     return this.usuarioRepository.find();
   }
 
+  async retornarTarefa(id: any): Promise<Usuario[]> {
+    return this.usuarioRepository.find(id);
+  }
+
   async cadastrar(data: UsuarioCadastrarDto): Promise<ResultadoDto>{
     
     let usuario = new Usuario()
-    usuario.name = data.name
-    usuario.cost = data.cost
-    usuario.category = data.category
+    usuario.descricao = data.descricao
+    usuario.prazo = data.prazo
+    usuario.completa = data.completa
     return await this.usuarioRepository.save(usuario)
     .then((result) => {
       return <ResultadoDto>{
@@ -52,8 +56,8 @@ export class UsuarioService {
     })
   }
 
-  async deletar(name: string): Promise<ResultadoDto>{
-    return this.usuarioRepository.delete(name).then((result) => {
+  async deletar(descricao: string): Promise<ResultadoDto>{
+    return this.usuarioRepository.delete(descricao).then((result) => {
       return <ResultadoDto>{
         status: true,
         mensagem: "Produto deletado"

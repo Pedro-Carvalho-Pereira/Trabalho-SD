@@ -1,5 +1,5 @@
 export interface UsuarioCadastrarDto{
-    name: string;
-    cost: number;
-    category: string;
+    descricao: string;
+    prazo: number;
+    completa: string;
 }

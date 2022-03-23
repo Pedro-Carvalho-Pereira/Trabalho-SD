@@ -7,12 +7,12 @@ export class Usuario {
   id: number;
 
   @Column({ length: 100 })
-  name: string;
+  descricao: string;
 
   @Column('int')
-  cost: number;
+  prazo: number;
 
   @Column({ length: 100 })
-  category: string;
+  completa: string;
 
 }

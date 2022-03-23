@@ -12,41 +12,34 @@ export default function FormDialog(props) {
 
   const [editValues, setEditValues] = useState({
     id: props.id,
-    name: props.title,
-    cost: props.cost,
-    category: props.category,
+    descricao: props.descricao,
+    prazo: props.prazo,
+    completa: props.completa
   });
 
   const handleEditGame = () => {
-    console.log(editValues.id, editValues.name, editValues.cost, editValues.category);
-    Axios.put(`http://localhost:3000/usuario/atualizar`, {
+    console.log(editValues.id, editValues.descricao,editValues.prazo, editValues.completa);
+    Axios.put(`http://localhost:3000/tarefas/atualizar`, {
       id: editValues.id,
-      name: editValues.name,
-      cost: editValues.cost,
-      category: editValues.category
+      descricao: editValues.descricao,
+      prazo: editValues.prazo,
+      completa: editValues.completa
     }).then((response) => {
       console.log('alterou aqui');
     });
     handleClose();
     window.location.reload(false);
-
-
-
-
-
-
   };
 
   const handleDeleteGame = (name_param) => {
     console.log(name_param);
-    Axios.delete(`http://localhost:3000/usuario/deletar`,{data:  {
-      name: name_param
+    Axios.delete(`http://localhost:3000/tarefas/deletar`,{data:  {
+      descricao: name_param
     }}).then((response) => {
       console.log('deletou aqui');
     });
     handleClose();
     window.location.reload(false);
-
   };
 
   const handleClickOpen = () => {
@@ -72,7 +65,7 @@ export default function FormDialog(props) {
         <TextField
           autoFocus
           margin="dense"
-          id="name"
+          id="descricao"
           label="Descrição da Tarefa"
           defaultValue={props.title}
           onChange={handleChangeValues}
@@ -82,9 +75,9 @@ export default function FormDialog(props) {
         <TextField
           autoFocus
           margin="dense"
-          id="cost"
+          id="prazo"
           label="Prazo"
-          defaultValue={props.cost}
+          defaultValue={props.prazo}
           onChange={handleChangeValues}
           type="text"
           fullWidth
@@ -92,9 +85,9 @@ export default function FormDialog(props) {
         <TextField
           autoFocus
           margin="dense"
-          id="category"
+          id="completa"
           label="Completa"
-          defaultValue={props.category}
+          defaultValue={props.completa}
           onChange={handleChangeValues}
           type="text"
           fullWidth
