@@ -10,7 +10,6 @@ function Cadastrar() {
   const navigate = useNavigate();
   const [values, setValues] = useState();
   const [listGames, setListGames] = useState();
-  console.log(listGames);
 
   const handleChangeValues = (value) => {
     setValues(prevValue => ({
@@ -45,7 +44,6 @@ function Cadastrar() {
 
   useEffect(() => {
     Axios.get("http://localhost:3000/tarefas").then((response) => {
-      console.log("aqui:", response.data);
       setListGames(response.data);
     });
   }, [])

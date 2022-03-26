@@ -18,27 +18,29 @@ export default function FormDialog(props) {
   });
 
   const handleEditGame = () => {
-    console.log(editValues.id, editValues.descricao,editValues.prazo, editValues.completa);
-    Axios.put(`http://localhost:3000/tarefas/atualizar`, {
+    Axios.put(`http://localhost:3000/tarefas/atualizar/${editValues.id}`, {
       id: editValues.id,
       descricao: editValues.descricao,
       prazo: editValues.prazo,
       completa: editValues.completa
     }).then((response) => {
-      console.log('alterou aqui');
+      handleClose();
+      window.location.reload(false);
     });
-    handleClose();
-    window.location.reload(false);
+
   };
 
   const handleDeleteGame = (name_param) => {
-    console.log(name_param);
-    Axios.delete(`http://localhost:3000/tarefas/deletar/${name_param}` , {data:{
-      descricao: name_param
-    }}).then((response) => {
-      console.log('deletou aqui');
+    Axios.delete(`http://localhost:3000/tarefas/deletar/${name_param}`, {
+      data: {
+        descricao: name_param
+      }
+    }).then((response) => {
+      handleClose();
+      window.location.reload(false);
     });
-    handleClose();
+
+
   };
 
   const handleClickOpen = () => {
@@ -96,10 +98,10 @@ export default function FormDialog(props) {
         <Button onClick={handleClose} color="primary">
           Cancelar
         </Button>
-        <Button onClick={() => {handleDeleteGame(props.id)}} color="primary">
+        <Button onClick={() => { handleDeleteGame(props.id) }} color="primary">
           Excluir
         </Button>
-        <Button onClick={() => {handleEditGame()}} color="primary">
+        <Button onClick={() => { handleEditGame() }} color="primary">
           Salvar
         </Button>
       </DialogActions>

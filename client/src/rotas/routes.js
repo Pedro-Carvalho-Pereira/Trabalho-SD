@@ -5,7 +5,6 @@ import Cadastrar from "../Pages/Cadastrar";
 
 const Routes = () => {
    return(<>
-       <h1>dsaasd</h1>
        </>
    )
 }

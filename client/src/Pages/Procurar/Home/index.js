@@ -14,6 +14,7 @@ function Cadastrar() {
   const [descricaoProcurado, setDescricaoProurado] = useState();
   const [prazoProcurado, setPrazoProurado] = useState();
   const [completaProcurado, setCompletaProurado] = useState();
+  const [jaProcurou, setJaprocurou] = useState(false);
 
 
 
@@ -32,17 +33,15 @@ function Cadastrar() {
   }
 
   const handleVoltar = () => {
-    navigate('/', { replace: true });
+    navigate('/cadastrar', { replace: true });
   }
 
 
   const handleClickProcurar = () => {
-    console.log("identificador:",values.identificador)
+    setJaprocurou(true);
     Axios.get(`http://localhost:3000/tarefas/${values.identificador}` ,  {
     }).then((response) => {
         setVetor(response.data);
-        console.log('resposta:',response);
-        console.log('vetor:',vetor);
         setIdProurado(response.data.id);
 
         setDescricaoProurado(response.data.descricao);
@@ -60,7 +59,7 @@ function Cadastrar() {
     <>
       <div>
         <div style={{justifyContent:'space-between', display:'flex'}}>
-          <button style={{ background: 'lightblue', borderRadius: '5px', width: '90px', fontSize: '22px' }} onClick={handleVoltar}>Home</button>
+          <button style={{ background: 'lightblue', borderRadius: '5px', width: '110px', fontSize: '22px' }} onClick={handleVoltar}>Cadastrar</button>
         </div>
         <div style={{ justifyContent: 'center', display: 'flex' }}>
           <div className="app--container" >
@@ -91,6 +90,12 @@ function Cadastrar() {
                   prazo={prazoProcurado}
                   completa={completaProcurado}
               ></Card> : ''
+              }
+
+              {
+                jaProcurou ? (idProcurado ? '' : <div style={{width: "36%",textAlign: "center", marginTop: "5%"}}>
+                  <h3>Tarefa não encontrada</h3>
+                  </div>) : ''
               }
 
 

@@ -16,7 +16,6 @@ export class UsuarioController {
 
   @Get(':id')
   async retornarTarefa(@Param('id') id: string){
-    console.log(id)
       return this.usuarioService.retornarTarefa(+id)
   }
 
@@ -25,14 +24,13 @@ export class UsuarioController {
     return this.usuarioService.cadastrar(data)
   }
 
-  @Put('atualizar')
-  async atualizar(@Body() usuario: Usuario) : Promise<ResultadoDto>{
-    return this.usuarioService.atualizar(usuario,usuario.id);
+  @Put('/atualizar/:id')
+  async atualizar(@Body() usuario: Usuario,@Param('id') id: string) {
+    return this.usuarioService.atualizar(usuario,+id);
   }
 
   @Delete('/deletar/:id')
   async deletar(@Param('id') id: string) {
-    console.log(id)
     return this.usuarioService.deletar(+id);
   }
 }

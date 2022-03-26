@@ -18,9 +18,6 @@ export class UsuarioService {
 
   async retornarTarefa(id: number) {
     var res = await this.usuarioRepository.findOne(id)
-    console.log(id);
- 
-    console.log(res);
  
     return res // this.usuarioRepository.findOne(id);
   }
@@ -46,7 +43,7 @@ export class UsuarioService {
     })
   }
 
-  async atualizar(usuario: Usuario, id: number): Promise<ResultadoDto>{
+  async atualizar(usuario: Usuario, id: number){
     return this.usuarioRepository.update(id,usuario).then((result) => {
       return <ResultadoDto>{
         status: true,
