@@ -16,8 +16,13 @@ export class UsuarioService {
     return this.usuarioRepository.find();
   }
 
-  async retornarTarefa(id: any): Promise<Usuario[]> {
-    return this.usuarioRepository.find(id);
+  async retornarTarefa(id: number) {
+    var res = await this.usuarioRepository.findOne(id)
+    console.log(id);
+ 
+    console.log(res);
+ 
+    return res // this.usuarioRepository.findOne(id);
   }
 
   async cadastrar(data: UsuarioCadastrarDto): Promise<ResultadoDto>{

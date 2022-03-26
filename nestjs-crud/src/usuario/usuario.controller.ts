@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, Post, Put } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
 import { ResultadoDto } from 'src/dto/resultado.dto';
 import { UsuarioCadastrarDto } from './dto/usuario.cadastrar.dto';
 import { Usuario } from './usuario.entity';
@@ -9,14 +9,15 @@ export class UsuarioController {
   constructor(private readonly usuarioService: UsuarioService) {}
 
 
-  @Get('')
+  @Get()
   async listar() : Promise<Usuario[]>{
       return this.usuarioService.listar()
   }
 
-  @Get('TarefaEspecifica')
-  async retornarTarefa(@Body() id: number) : Promise<Usuario[]>{
-      return this.usuarioService.retornarTarefa(id)
+  @Get(':id')
+  async retornarTarefa(@Param('id') id: string){
+    console.log(id)
+      return this.usuarioService.retornarTarefa(+id)
   }
 
   @Post('')

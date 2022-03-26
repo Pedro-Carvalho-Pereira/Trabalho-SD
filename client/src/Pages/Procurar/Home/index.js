@@ -10,6 +10,15 @@ function Cadastrar() {
   const navigate = useNavigate();
   const [values, setValues] = useState();
 
+  const [idProcurado, setIdProurado] = useState();
+  const [descricaoProcurado, setDescricaoProurado] = useState();
+  const [prazoProcurado, setPrazoProurado] = useState();
+  const [completaProcurado, setCompletaProurado] = useState();
+
+
+
+
+
   const [vetor,setVetor] = useState();
 
   const [listGames, setListGames] = useState();
@@ -28,12 +37,20 @@ function Cadastrar() {
 
 
   const handleClickProcurar = () => {
-    Axios.get("http://localhost:3000/tarefas/", {
-      id: values.identificador
+    console.log("identificador:",values.identificador)
+    Axios.get(`http://localhost:3000/tarefas/${values.identificador}` ,  {
     }).then((response) => {
         setVetor(response.data);
         console.log('resposta:',response);
         console.log('vetor:',vetor);
+        setIdProurado(response.data.id);
+
+        setDescricaoProurado(response.data.descricao);
+
+        setPrazoProurado(response.data.prazo);
+        setCompletaProurado(response.data.completa);
+
+
     });
   };
 
@@ -63,16 +80,18 @@ function Cadastrar() {
                   <button className="register--button" onClick={() => handleClickProcurar()}>Procurar</button>
                 </div>
               </div>
-              {typeof listGames !== "undefined" && listGames.map((value) => {
-                return (<Card key={value.id}
-                  listCard={listGames}
+              
+
+              {
+                idProcurado ? <Card key={idProcurado}
+                listCard={listGames}
                   setListCard={setListGames}
-                  id={value.id}
-                  descricao={value.descricao}
-                  prazo={value.prazo}
-                  completa={value.completa}
-                ></Card>);
-              })}
+                  id={idProcurado}
+                  descricao={descricaoProcurado}
+                  prazo={prazoProcurado}
+                  completa={completaProcurado}
+              ></Card> : ''
+              }
 
 
               
