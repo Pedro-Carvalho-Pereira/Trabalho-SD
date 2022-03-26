@@ -1,0 +1,13 @@
+Para rodar o trabalho, é preciso primeiramente abrir a pasta client
+através do terminal (Trabalho-SD/client) de comando e usar o seguinte comando: npm install.
+
+Em seguida use o mesmo comando na pasta nestjs-crud (Trabalho-SD/client) : npm install.
+
+Então use seguinte comando na pasta nestjs-crud: npm start run:dev
+
+E finalmente use este comando na pasta client: npm start.
+E finalmente, confirme com a tecla y para abrir o client em uma porta diferente da do servidor.
+
+
+
+
