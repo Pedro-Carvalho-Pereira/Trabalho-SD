@@ -33,13 +33,12 @@ export default function FormDialog(props) {
 
   const handleDeleteGame = (name_param) => {
     console.log(name_param);
-    Axios.delete(`http://localhost:3000/tarefas/deletar`,{data:  {
+    Axios.delete(`http://localhost:3000/tarefas/deletar/${name_param}` , {data:{
       descricao: name_param
     }}).then((response) => {
       console.log('deletou aqui');
     });
     handleClose();
-    window.location.reload(false);
   };
 
   const handleClickOpen = () => {
@@ -97,7 +96,7 @@ export default function FormDialog(props) {
         <Button onClick={handleClose} color="primary">
           Cancelar
         </Button>
-        <Button onClick={() => {handleDeleteGame(props.title)}} color="primary">
+        <Button onClick={() => {handleDeleteGame(props.id)}} color="primary">
           Excluir
         </Button>
         <Button onClick={() => {handleEditGame()}} color="primary">

@@ -30,8 +30,9 @@ export class UsuarioController {
     return this.usuarioService.atualizar(usuario,usuario.id);
   }
 
-  @Delete('deletar')
-  async deletar(@Body() descricao: string) : Promise<ResultadoDto>{
-    return this.usuarioService.deletar(descricao);
+  @Delete('/deletar/:id')
+  async deletar(@Param('id') id: string) {
+    console.log(id)
+    return this.usuarioService.deletar(+id);
   }
 }

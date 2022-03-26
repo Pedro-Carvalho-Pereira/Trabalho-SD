@@ -61,8 +61,8 @@ export class UsuarioService {
     })
   }
 
-  async deletar(descricao: string): Promise<ResultadoDto>{
-    return this.usuarioRepository.delete(descricao).then((result) => {
+  async deletar(id: number){
+    return this.usuarioRepository.delete(id).then((result) => {
       return <ResultadoDto>{
         status: true,
         mensagem: "Produto deletado"
